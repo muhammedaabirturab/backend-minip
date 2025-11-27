@@ -14,6 +14,7 @@ connectDB();
 
 app.use("/api/auth", require(path.join(__dirname, "routes", "authRoutes")));
 app.use("/api/wallet", require(path.join(__dirname, "routes", "walletRoutes")));
-app.use("/api/expense", require(path.join(__dirname, "routes", "expenseRoutes")));
+app.use("/api/expense", require(path.join(__dirname, "routes", "expenseRoute")));
 
-app.listen(5000, () => console.log("Server running on 5000"));
+const PORT = process.env.PORT || 5000;
+app.listen(PORT, () => console.log(`Server running on ${PORT}`));
