@@ -31,8 +31,8 @@ exports.addMember = async (req, res) => {
     const member = await User.findOne({ email: memberEmail });
     if (!member) return res.status(404).json({ message: "User not found" });
 
-    if (wallet.members.includes(member._id))
-      return res.status(400).json({ message: "Already a member" });
+    const alreadyMember = wallet.members.some(id => id.toString() === member._id.toString());
+    if (alreadyMember) return res.status(400).json({ message: "Already a member" });
 
     wallet.members.push(member._id);
     await wallet.save();
